@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+        <!-- to turn on html 5 validation add this directive "ngNativeValidate" -->
+        <div id="user-data" ngModelGroup="userData" #userData="ngModelGroup">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" class="form-control" ngModel name="username" required #username="ngModel">
+            <span class="help-block" *ngIf="username.invalid && username.touched">User name cannot be empty!</span>
+          </div>
+          <button class="btn btn-default" type="button" (click)="suggestUserName()">Suggest an Username</button>
+          <div class="form-group">
+            <label for="email">Mail</label>
+            <input type="email" id="email" class="form-control" ngModel name="email" required email #email="ngModel">
+            <span class="help-block" *ngIf="email.invalid && email.touched">Please enter a valid email!</span>
+          </div>
+        </div>
+        <p *ngIf="userData.invalid && userData.touched">User data is invalid</p>
+        <div class="form-group">
+          <label for="secret">Secret Questions</label>
+          <select id="secret" class="form-control" name="secret" [ngModel]="defaultQuestion">
+            <option value="pet">Your first Pet?</option>
+            <option value="teacher">Your first teacher?</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea name="questionAnswer" 
+          id=""
+          class="form-control" 
+          rows="1" 
+          [(ngModel)]="answer">
+          </textarea>
+        </div>
+        <p>Your reply: {{ answer }}</p>
+        <div class="radio" *ngFor="let gender of genders">
+          <label for="">
+            <input type="radio" name="gender" id="" [value]="gender" ngModel required>{{ gender }}
+          </label> 
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Submit</button>
+      </form>
+    </div>
+  </div>
+  <div class="row" *ngIf="submitted">
+    <div class="col-12">
+      <h3>Your data</h3>
+      <pre>
+        {{ user|json}}
+      </pre>
+      <p>Username: {{ user.userData.username }}</p>
+      <p>Email: {{ user.userData.email }}</p>
+      <p>Secret Question: {{ user.secret }}</p>
+      <p>Answer: {{ user.questionAnswer }}</p>
+      <p>Gender: {{ user.gender }}</p>
+    </div>
+  </div>
+</div>

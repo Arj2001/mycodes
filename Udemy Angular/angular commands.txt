@@ -1,0 +1,42 @@
+ng new my-first-app --no-strict --standalone false --routing false
+
+--no-strict: no strict angular policy need not be implemented
+--standalone: no need as beginner
+--routing: no rouing needed
+
+ng serve: to serve the angular
+
+[(ngModel)]: for two way binding `in order to use this add 'FormsModule' in import section of ngModule in app.module.ts
+{ }: for inline angular syntax 
+
+add bootstrap in style imports of angular.json `install bootstrap via npm and save it for current project`
+
+ng g c name : to create component
+
+there are mulitple ways to write selector for a component
+
+{{ data }} string interpolation      }
+[property]="data" property binding   }          Output data >>>>>
+
+(event) Event binding }  Input data <<<<<
+
+[(ngModel)]="data" two way binding 
+
+<input type="text" class="form-control" (input)="onUpdateServerName($event)"> the $event contain all event details(like whole value inside the input tag)
+     (<HTMLInputElement>event.target).value can be used to get the input value from event
+
+
+Componentn life cycle
+*********************
+
+- constructor()ng
+- ngOnChanges(changes) any change deteted
+- ngOnInit() when compoentn initalizing
+- ngDoCheck() when any change is deteted
+- ngAfterContentInit() when the component is initalized
+- ngAfterContentChecked() when the component is initalized
+- ngAfterViewInit() when is view initalized
+- ngAfterViewChecked() when is view initalized
+- ngOnDestroy() when the component is destroyed
+
+### all checks are called when ever there is a event like clicking a button
